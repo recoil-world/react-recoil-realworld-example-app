@@ -11,7 +11,9 @@
 *.launch
 .settings/
 
-
-#System Files
+# System Files
 .DS_Store
 Thumbs.db
+
+# Build Files
+/dist
