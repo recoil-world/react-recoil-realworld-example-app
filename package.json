@@ -1,0 +1,27 @@
+{
+  "name": "react-recoil-realworld-example-app",
+  "version": "0.1.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jho2301/realworld-starter-kit.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jho2301/realworld-starter-kit/issues"
+  },
+  "homepage": "https://github.com/jho2301/realworld-starter-kit#readme",
+  "contributors": [
+    {
+      "name": "seojihwan",
+      "email": "seojihwan213@naver.com"
+    },
+    {
+      "name": "jho2301",
+      "email": "jho2301@gmail.com"
+    }
+  ]
+}
