@@ -1,8 +1,10 @@
 import webpack from 'webpack';
 import webpackDevServer from 'webpack-dev-server';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
-import path from 'path';
 
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
+
+import path from 'path';
 interface WebpackConfig extends webpack.Configuration {
   devServer?: webpackDevServer.Configuration;
 }
@@ -37,6 +39,15 @@ const webpackConfig: WebpackConfig = {
   plugins: [
     new HtmlWebpackPlugin({
       template: path.resolve('public', 'index.html'),
+    }),
+    new ForkTsCheckerWebpackPlugin({
+      typescript: {
+        diagnosticOptions: {
+          semantic: true,
+          syntactic: true,
+        },
+        mode: 'write-references',
+      },
     }),
   ],
   devServer: {
