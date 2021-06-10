@@ -1,6 +1,13 @@
-import React from 'react';
 import ReactDOM from 'react-dom';
+import { HashRouter as Router } from 'react-router-dom';
+
+import App from './App';
 
 const $root = document.getElementById('root');
 
-ReactDOM.render(<div>Hello world!!</div>, $root);
+ReactDOM.render(
+  <Router>
+    <App />
+  </Router>,
+  $root
+);
