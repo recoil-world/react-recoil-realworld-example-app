@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import ReactDOM from 'react-dom';
 import { HashRouter as Router } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
@@ -9,7 +10,9 @@ const $root = document.getElementById('root');
 ReactDOM.render(
   <Router>
     <RecoilRoot>
-      <App />
+      <Suspense fallback={true}>
+        <App />
+      </Suspense>
     </RecoilRoot>
   </Router>,
   $root

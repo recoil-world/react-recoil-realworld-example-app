@@ -16,7 +16,8 @@
   - [ ] Read Comments
   - [ ] Delete Comment
 - List of Articles
-  - [ ] Get Paginated Articles
+  - [x] Get Article List
+  - [ ] Paginate Articles
   - [ ] Add Favorite Article
 - Tag
   - [ ] Get Tags
