@@ -8,16 +8,17 @@ interface APIOption<T> {
 const fetchOption = <T,>(option: APIOption<T>): RequestInit => ({
   headers: {
     'Content-Type': 'application/json; charset=utf-8',
-    Authorization: `Token ${option.accessToken}`,
+    ...(option.accessToken && { Authorization: `Token ${option.accessToken}` }),
   },
 });
 
 const request = async (path: string, fetchOption: RequestInit) => {
-  const response = await fetch(path, fetchOption).then((response) => response.json());
+  const response = await fetch(path, fetchOption);
+  const responseData = await response.json();
 
-  if (!response.ok) throw Error(response.errors.body.pop());
+  if (!response.ok) throw Error(responseData.errors.body.pop());
 
-  return response;
+  return responseData;
 };
 
 const APIClient = {
