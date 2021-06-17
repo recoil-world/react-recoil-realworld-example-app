@@ -11,6 +11,6 @@ export const articleListQuery = selector<Articles>({
     get(requestIdState);
     const tag = get(currentTagState);
 
-    return requestArticleList({ tag });
+    return requestArticleList({ ...(tag && { tag }) });
   },
 });

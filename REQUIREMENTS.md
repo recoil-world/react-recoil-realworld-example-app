@@ -23,5 +23,5 @@
 - Tag
   - [x] Get Tags
 - Navigation Bar
-  - [ ] Select Nav Item
+  - [x] Select Nav Item
 - Authenticate users via JWT

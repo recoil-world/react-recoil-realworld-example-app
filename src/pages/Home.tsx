@@ -1,14 +1,10 @@
 import { Suspense } from 'react';
 
 import TagList from '../components/TagList';
+import ArticleNav from '../components/ArticleNav';
 import ArticleList from '../components/ArticleList';
-import NavItem from '../components/NavItem';
-import { useRecoilValue } from 'recoil';
-import { currentTagState } from '../state/tag';
 
 const Home = () => {
-  const currentTag = useRecoilValue(currentTagState);
-
   return (
     <div>
       <div className="home-page">
@@ -22,31 +18,7 @@ const Home = () => {
         <div className="container page">
           <div className="row">
             <div className="col-md-9">
-              <div className="feed-toggle">
-                <ul className="nav nav-pills outline-active">
-                  <NavItem
-                    name="Your Feed"
-                    onChangeActive={() => {
-                      console.log('?');
-                    }}
-                  />
-                  <NavItem
-                    name="Global Feed"
-                    onChangeActive={() => {
-                      console.log('?');
-                    }}
-                  />
-                  {currentTag && (
-                    <NavItem
-                      name={`#${currentTag}`}
-                      active={true}
-                      onChangeActive={() => {
-                        console.log('?');
-                      }}
-                    />
-                  )}
-                </ul>
-              </div>
+              <ArticleNav />
               <Suspense fallback={<div>loading article list...</div>}>
                 <ArticleList />
               </Suspense>

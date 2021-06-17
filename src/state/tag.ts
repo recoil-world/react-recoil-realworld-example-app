@@ -4,9 +4,9 @@ import { requestTags } from '../service/request/tag';
 import { TagType } from '../types';
 import { requestIdState } from './request';
 
-export const currentTagState = atom<TagType | undefined>({
+export const currentTagState = atom<TagType>({
   key: 'currentTag',
-  default: undefined,
+  default: '',
 });
 
 export const tagsQuery = selector<TagType[]>({

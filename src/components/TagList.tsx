@@ -1,11 +1,8 @@
-import { useRecoilValue, useSetRecoilState } from 'recoil';
-
-import { currentTagState, tagsQuery } from '../state/tag';
 import Tag from '../components/Tag';
+import useTag from '../service/hooks/useTag';
 
 const TagList = () => {
-  const setCurrentTag = useSetRecoilState(currentTagState);
-  const tags = useRecoilValue(tagsQuery);
+  const { tags, setCurrentTag } = useTag();
 
   return (
     <ul className="tag-list">
