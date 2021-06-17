@@ -1,5 +1,7 @@
 import { Route, Switch } from 'react-router-dom';
 
+import Header from './components/Header';
+import Footer from './components/Footer';
 import Home from './pages/Home';
 import Article from './pages/Article';
 import Auth from './pages/Auth';
@@ -9,7 +11,8 @@ import Profile from './pages/Profile';
 
 const App = () => {
   return (
-    <div>
+    <>
+      <Header />
       <Switch>
         <Route path="/" component={Home} exact />
         <Route path="/article" component={Article} />
@@ -18,7 +21,8 @@ const App = () => {
         <Route path="/editor/:article-slug?" component={Editor} />
         <Route path={['/profile/:username', '/profile/:username/favorites']} component={Profile} />
       </Switch>
-    </div>
+      <Footer />
+    </>
   );
 };
 

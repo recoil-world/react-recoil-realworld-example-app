@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 
+import Tag from '../components/Tag';
 import { Article } from '../types';
 import { toUSDate } from '../utils/date';
 
@@ -10,6 +11,7 @@ const ArticlePreview = ({
   createdAt,
   favoritesCount,
   author,
+  tagList,
 }: Article) => {
   return (
     <div className="article-preview">
@@ -31,6 +33,11 @@ const ArticlePreview = ({
         <h1>{title}</h1>
         <p>{description}</p>
         <span>Read more...</span>
+        <ul className="tag-list">
+          {tagList.map((tag, index) => (
+            <Tag key={index} tag={tag} outline />
+          ))}
+        </ul>
       </Link>
     </div>
   );

@@ -30,3 +30,5 @@ export interface Articles {
   articles: Article[];
   articlesCount: number;
 }
+
+export type TagType = string;

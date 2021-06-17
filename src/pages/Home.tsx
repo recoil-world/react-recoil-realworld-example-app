@@ -1,30 +1,13 @@
-import { useEffect } from 'react';
-import { atom, selector, useRecoilState, useRecoilValue } from 'recoil';
-import ArticlePreview from '../components/ArticlePreview';
+import { Suspense } from 'react';
 
-import { requestArticleList } from '../service/request/article';
-
-const requestIdState = atom({
-  key: 'requestId',
-  default: 0,
-});
-
-const articleListQuery = selector({
-  key: 'articleList',
-  get: ({ get }) => {
-    get(requestIdState);
-
-    return requestArticleList();
-  },
-});
+import TagList from '../components/TagList';
+import ArticleList from '../components/ArticleList';
+import NavItem from '../components/NavItem';
+import { useRecoilValue } from 'recoil';
+import { currentTagState } from '../state/tag';
 
 const Home = () => {
-  const articleList = useRecoilValue(articleListQuery);
-  const [requestId, setRequestId] = useRecoilState(requestIdState);
-
-  useEffect(() => {
-    setRequestId(requestId + 1);
-  }, []);
+  const currentTag = useRecoilValue(currentTagState);
 
   return (
     <div>
@@ -41,54 +24,39 @@ const Home = () => {
             <div className="col-md-9">
               <div className="feed-toggle">
                 <ul className="nav nav-pills outline-active">
-                  <li className="nav-item">
-                    <a className="nav-link disabled" href="">
-                      Your Feed
-                    </a>
-                  </li>
-                  <li className="nav-item">
-                    <a className="nav-link active" href="">
-                      Global Feed
-                    </a>
-                  </li>
+                  <NavItem
+                    name="Your Feed"
+                    onChangeActive={() => {
+                      console.log('?');
+                    }}
+                  />
+                  <NavItem
+                    name="Global Feed"
+                    onChangeActive={() => {
+                      console.log('?');
+                    }}
+                  />
+                  {currentTag && (
+                    <NavItem
+                      name={`#${currentTag}`}
+                      active={true}
+                      onChangeActive={() => {
+                        console.log('?');
+                      }}
+                    />
+                  )}
                 </ul>
               </div>
-
-              {articleList.articles.map((article) => (
-                <ArticlePreview key={article.slug} {...article} />
-              ))}
-
-              <div className="col-md-3">
-                <div className="sidebar">
-                  <p>Popular Tags</p>
-
-                  <div className="tag-list">
-                    <a href="" className="tag-pill tag-default">
-                      programming
-                    </a>
-                    <a href="" className="tag-pill tag-default">
-                      javascript
-                    </a>
-                    <a href="" className="tag-pill tag-default">
-                      emberjs
-                    </a>
-                    <a href="" className="tag-pill tag-default">
-                      angularjs
-                    </a>
-                    <a href="" className="tag-pill tag-default">
-                      react
-                    </a>
-                    <a href="" className="tag-pill tag-default">
-                      mean
-                    </a>
-                    <a href="" className="tag-pill tag-default">
-                      node
-                    </a>
-                    <a href="" className="tag-pill tag-default">
-                      rails
-                    </a>
-                  </div>
-                </div>
+              <Suspense fallback={<div>loading article list...</div>}>
+                <ArticleList />
+              </Suspense>
+            </div>
+            <div className="col-md-3">
+              <div className="sidebar">
+                <p>Popular Tags</p>
+                <Suspense fallback={<div>loading tag list...</div>}>
+                  <TagList />
+                </Suspense>
               </div>
             </div>
           </div>

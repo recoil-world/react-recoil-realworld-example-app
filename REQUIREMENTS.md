@@ -17,9 +17,11 @@
   - [ ] Delete Comment
 - List of Articles
   - [x] Get Article List
+  - [x] Get Tagged Article List
   - [ ] Paginate Articles
   - [ ] Add Favorite Article
 - Tag
-  - [ ] Get Tags
-
+  - [x] Get Tags
+- Navigation Bar
+  - [ ] Select Nav Item
 - Authenticate users via JWT
